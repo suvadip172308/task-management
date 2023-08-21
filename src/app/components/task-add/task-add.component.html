@@ -1,0 +1,41 @@
+<div class="pt-5 mx-auto w-75">
+  <button
+    type="button"
+    class="btn btn-dark w-2"
+    (click)="onToggleTask()"
+  >
+    {{ toggleTask ? '- Add Task' : ' + Add Task' }}
+  </button>
+  
+  <div *ngIf="toggleTask"
+    class="g-3 mt-3"
+  >
+    <form
+      [formGroup]="addTaskForm"
+      class="py-5 px-4 border border-dark"
+      (ngSubmit)="onSubmit()"
+    >
+    <div class="mb-3">
+      <input type="email" class="form-control" placeholder="Title" formControlName="title">
+    </div>
+      <div class="mb-3">
+        <textarea class="form-control" rows="3" placeholder="Description" formControlName="description"></textarea>
+      </div>
+      <div class="col-auto mt-3 d-flex justify-content-end">
+        <button
+          type="button"
+          class="btn btn-secondary me-2"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="btn btn-dark px-2"
+        >
+          Create Task
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

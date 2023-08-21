@@ -1,0 +1,66 @@
+<div class="pt-5 mx-auto w-75">
+  <form [formGroup]="filterForm" class="row mb-3 justify-content-end">
+    <label class="col-auto form-label mt-1 fw-bold">Filter : </label>
+    <select
+      formControlName="filterItem"
+      class="col-auto form-select w-auto"
+      (change)="onFilterItem()"
+    >
+      <option
+        *ngFor="let item of filterItems"
+        [value]="item"
+      >
+        {{ item }}
+      </option>
+    </select>
+  </form>
+    
+  <div
+    *ngIf="(tasks$ | async)?.length; else noTask"
+    class="task-list-container border p-4"
+  >
+    <div class="task-header row">
+      <div class="col-1"></div>
+      <div class="col-3">
+        <h2>Task</h2>
+      </div>
+      <div class="col-4">
+        <h2>Description</h2>
+      </div>
+      <div class="col-2">
+        <h2>Status</h2>
+      </div>
+      <div class="col-2">
+        <h2>Action</h2>
+      </div>
+    </div>
+    <div class="task-container">
+      <ul *ngFor="let task of (tasks$ | async); let i = index"
+        class="p-0"
+      >
+        <li class="row pt-2">
+          <div class="col-1">{{i + 1}}.</div>
+          <div class="col-3">{{ task.title }}</div>
+          <div class="col-4">{{ task.description }}</div>
+          <div class="col-2">{{ task.status }}</div>
+          <div class="col-2">
+            <button
+              type="button"
+              class="btn btn-dark"
+              [disabled]="taskStatus.COMPLETE === task.status"
+              (click)="onMarkComplete(task)"
+            >
+              Complete
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <ng-template #noTask>
+    <div class="row text-center">
+      <h1 class="d-inline mt-5">No Task Available</h1>
+    </div>
+  </ng-template>
+</div>
