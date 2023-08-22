@@ -1,37 +1,27 @@
 <div class="pt-5 mx-auto w-75">
-  <form [formGroup]="filterForm" class="row mb-3 justify-content-end">
-    <label class="col-auto form-label mt-1 fw-bold">Filter : </label>
-    <select
-      formControlName="filterItem"
-      class="col-auto form-select w-auto"
-      (change)="onFilterItem()"
-    >
-      <option
-        *ngFor="let item of filterItems"
-        [value]="item"
-      >
-        {{ item }}
-      </option>
-    </select>
-  </form>
-    
+  <div class="mb-3">
+    <app-filter
+      [filters]="filterItems"
+      (filterChange)="onFilterChange($event)"
+    ></app-filter>
+  </div>
   <div
     *ngIf="(tasks$ | async)?.length; else noTask"
-    class="task-list-container border p-4"
+    class="task-list-container border py-4"
   >
-    <div class="task-header row">
+    <div class="task-header row m-0 border-bottom">
       <div class="col-1"></div>
       <div class="col-3">
-        <h2>Task</h2>
+        <h3>Task</h3>
       </div>
       <div class="col-4">
-        <h2>Description</h2>
+        <h3>Description</h3>
       </div>
       <div class="col-2">
-        <h2>Status</h2>
+        <h3>Status</h3>
       </div>
-      <div class="col-2">
-        <h2>Action</h2>
+      <div class="col-2 text-center">
+        <h3>Action</h3>
       </div>
     </div>
     <div class="task-container">
@@ -39,7 +29,7 @@
         class="p-0"
       >
         <li class="row pt-2">
-          <div class="col-1">{{i + 1}}.</div>
+          <div class="col-1 text-center">{{i + 1}}.</div>
           <div class="col-3">{{ task.title }}</div>
           <div class="col-4">{{ task.description }}</div>
           <div class="col-2">{{ task.status }}</div>
@@ -59,8 +49,8 @@
   </div>
 
   <ng-template #noTask>
-    <div class="row text-center">
-      <h1 class="d-inline mt-5">No Task Available</h1>
+    <div class="row text-center p-5 border">
+      <h2>No task available</h2>
     </div>
   </ng-template>
 </div>

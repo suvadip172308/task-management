@@ -43,6 +43,7 @@ export class TaskService {
     const filteredRes = this.taskData.filter(task =>  {
       return filter === FilterBy.ALL ? true : filter === task.status;
     });
+    
     this.taskSub.next(filteredRes);
   }
 }

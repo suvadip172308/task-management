@@ -7,12 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskAddComponent } from './components/task-add/task-add.component';
 import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
-    TaskAddComponent
+    TaskAddComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
