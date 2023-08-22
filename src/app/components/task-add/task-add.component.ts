@@ -40,7 +40,7 @@ export class TaskAddComponent {
 
     this.taskService.addTask({
       title,
-      description,
+      description: description.length ? description : '---',
       status: TaskStatus.INCOMPLETE,
     })
 
