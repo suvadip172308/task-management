@@ -1,0 +1,15 @@
+<form [formGroup]="filterForm" class="row">
+  <label class="col-auto form-label mt-1 fw-bold">Filter : </label>
+  <select
+    formControlName="filterItem"
+    class="col-auto form-select w-auto"
+    (change)="onChangeFilter()"
+  >
+    <option
+      *ngFor="let item of filters"
+      [value]="item"
+    >
+      {{ item }}
+    </option>
+  </select>
+</form>

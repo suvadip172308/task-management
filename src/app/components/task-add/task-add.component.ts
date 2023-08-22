@@ -32,9 +32,9 @@ export class TaskAddComponent {
 
   onSubmit() {
     const title = this.addTaskForm.get('title')?.value?.trim();
-    const description = this.addTaskForm.get('description')?.value?.trim();
+    const description = this.addTaskForm.get('description')?.value?.trim() ?? '';
 
-    if(!title || !description) {
+    if(!title) {
       return;
     }
 
